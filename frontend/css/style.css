@@ -1,0 +1,132 @@
+/* Importing HighlightJS CSS library for code highlighting with github dark dimmed theme */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark-dimmed.min.css");
+
+/* Importing the main Dosis font for the page */
+@import url("https://fonts.googleapis.com/css2?family=Dosis&display=swap");
+
+/* Importing the Droid Sans Mono font for the code */
+@import url("https://fonts.googleapis.com/css?family=Droid Sans Mono");
+
+/* Style for all the elements in the page */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Dosis", sans-serif;
+    letter-spacing: 0.4px;
+}
+
+/* Adding the background color for the whole page */
+body {
+    background-color: #2c333b;
+}
+
+/* Style for the main content where all information about the GitHub user and repo are shown like profile info,all repos,repo info and code in the repo */
+#mainContent {
+    margin-top: 100px;
+}
+
+/* Style for the information Div where information Text is showed */
+#infoDiv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+/* Style for the information Text where all the information or error regarding finding the github user is showed */
+#infoText {
+    text-align: center;
+    font-weight: bold;
+    font-size: 21px;
+}
+
+/* If the msg is an info type then the class of infoText should be info and it's color is green type */
+#infoText.info {
+    color: #589bed;
+}
+
+/* If the msg is an error type then the class of infoText should be err and it's color is red type */
+#infoText.err {
+    color: #f64747;
+}
+
+/* Style for the wrapper when popups are shown */
+#wrapper.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Animation effect for all loader */
+@keyframes d5 {
+    0% {
+        box-shadow:
+            20px 0 #ced9e4,
+            -20px 0 #ced9e422;
+        background: #ced9e4;
+    }
+    33% {
+        box-shadow:
+            20px 0 #ced9e4,
+            -20px 0 #ced9e422;
+        background: #ced9e422;
+    }
+    66% {
+        box-shadow:
+            20px 0 #ced9e422,
+            -20px 0 #ced9e4;
+        background: #ced9e422;
+    }
+}
+
+/* Style for loader div for general where loading animation is showed */
+#loaderDivForGeneral {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+/* Style for the loading animation in general loader div */
+#loaderDivForGeneral div.custom-loader {
+    width: 10px;
+    height: 10px;
+    background: #ced9e4;
+    border-radius: 50%;
+    box-shadow:
+        20px 0 #ced9e422,
+        -20px 0 #ced9e4;
+    animation: d5 1s infinite linear alternate;
+}
+
+/* Hide scrollbars */
+::-webkit-scrollbar {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    display: none;
+}
+
+/* Style for make this page responsive */
+@media only screen and (min-width: 768px) {
+    #siteLogoDiv {
+        margin-left: 29%;
+    }
+    #searchBox {
+        margin-right: 22%;
+    }
+    #profileInfoDiv,
+    #repoInfoDiv,
+    #codeWrapper,
+    #reposDiv,
+    #branchListWrapper,
+    #fileExplorerWrapper {
+        width: 55%;
+    }
+}
+
+/* Importing Styles for Profile View  */
+@import url("./profile.css");

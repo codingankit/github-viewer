@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <title>GitHub Viewer</title>
+        <!-- Import Google Material Icons -->
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0"
+        />
+        <!-- Import HighlightJS Library for code highlighting -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    </head>
+
+    <body>
+        <!-- Wrapper for the entire content -->
+        <div id="wrapper">
+            <!-- Main content section -->
+            <div id="mainContent">
+                <!-- Profile Full View wrapper section -->
+                <div id="profileFullViewWrapper">
+                    <!-- Header section -->
+                    <div id="header">
+                        <!-- Site logo and text -->
+                        <div id="siteLogoDiv">
+                            <img
+                                id="logoImage"
+                                src="<%= require('./images/gitHubIcon.png') %>"
+                                alt=""
+                            />
+                            <span id="logoText">Viewer</span>
+                        </div>
+                        <!-- Search box for GitHub username -->
+                        <div id="searchBox">
+                            <input
+                                type="search"
+                                id="searchUserInput"
+                                placeholder="Search a GitHub Username"
+                            />
+                        </div>
+                    </div>
+                    <!-- Profile full view -->
+                    <div id="profileFullView">
+                        <!-- Profile information -->
+                        <div id="profileInfoDiv">
+                            <!-- Full name, username, profile pic, and bio -->
+                            <div id="nameUsernmeProfilePicBioDiv">
+                                <div id="nameUsernmeProfilePicDiv">
+                                    <!-- Profile picture -->
+                                    <div id="profilePicDiv">
+                                        <img
+                                            id="profilePic"
+                                            alt="Profile Pic"
+                                        />
+                                    </div>
+                                    <!-- Name and username -->
+                                    <div id="nameUsernmeDiv">
+                                        <h3 id="userFullName"></h3>
+                                        <h6 id="username"></h6>
+                                    </div>
+                                </div>
+                                <!-- User bio -->
+                                <div id="userBio"></div>
+                            </div>
+                            <!-- Other profile information -->
+                            <div id="otherInfoDiv">
+                                <!-- Location -->
+                                <div id="locationDiv">
+                                    <span
+                                        class="material-symbols-rounded"
+                                        id="locationIcon"
+                                    >
+                                        location_on
+                                    </span>
+                                    <h5 id="location"></h5>
+                                </div>
+                                <!-- Followers and following count -->
+                                <div id="followDiv">
+                                    <span
+                                        class="material-symbols-rounded"
+                                        id="followIcon"
+                                    >
+                                        groups
+                                    </span>
+                                    <h5 id="follow">
+                                        <span id="followers"></span> Followers -
+                                        <span id="following"></span> Following
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Repositories section -->
+                        <div id="reposDiv">
+                            <!-- Repositories header -->
+                            <div id="reposDivHeader">
+                                <h3 id="reposHeading">Repositories</h3>
+                                <span id="totalReposBadge"></span>
+                            </div>
+                            <!-- Repositories container -->
+                            <div id="reposContainer"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Information section -->
+            <div id="infoDiv">
+                <h3 id="infoText" class="info">
+                    Type a GitHub Username and Hit Enter
+                </h3>
+            </div>
+            <!-- Loader for profile information -->
+            <div id="loaderDivForGeneral">
+                <div class="custom-loader"></div>
+            </div>
+        </div>
+    </body>
+</html>

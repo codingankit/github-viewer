@@ -196,7 +196,7 @@
 /* Style for reposDiv where all repos are showed of the user in short */
 #reposDiv {
     overflow: auto;
-    max-height: 500px;
+    max-height: 540px;
     background-color: #2c333b;
     margin: 0px auto 15px auto;
     width: 93%;

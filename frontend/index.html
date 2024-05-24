@@ -4,20 +4,22 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
         <title>GitHub Viewer</title>
+
         <!-- Import Google Material Icons -->
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0"
         />
+
         <!-- Import HighlightJS Library for code highlighting -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     </head>
 
     <body>
-        <!-- Wrapper for the entire content -->
+        <!-- Wrapper for the entire content except popups like File Explorer and Branches List -->
         <div id="wrapper">
             <!-- Main content section -->
-            <div id="mainContent">
+            <div id="mainContent" class="profileView">
                 <!-- Profile Full View wrapper section -->
                 <div id="profileFullViewWrapper">
                     <!-- Header section -->
@@ -27,10 +29,11 @@
                             <img
                                 id="logoImage"
                                 src="<%= require('./images/gitHubIcon.png') %>"
-                                alt=""
+                                alt="GitHub Logo"
                             />
                             <span id="logoText">Viewer</span>
                         </div>
+
                         <!-- Search box for GitHub username -->
                         <div id="searchBox">
                             <input
@@ -40,12 +43,14 @@
                             />
                         </div>
                     </div>
+
                     <!-- Profile full view -->
                     <div id="profileFullView">
                         <!-- Profile information -->
                         <div id="profileInfoDiv">
                             <!-- Full name, username, profile pic, and bio -->
                             <div id="nameUsernmeProfilePicBioDiv">
+                                <!-- Profile picture and name section -->
                                 <div id="nameUsernmeProfilePicDiv">
                                     <!-- Profile picture -->
                                     <div id="profilePicDiv">
@@ -54,15 +59,18 @@
                                             alt="Profile Pic"
                                         />
                                     </div>
+
                                     <!-- Name and username -->
                                     <div id="nameUsernmeDiv">
                                         <h3 id="userFullName"></h3>
                                         <h6 id="username"></h6>
                                     </div>
                                 </div>
+
                                 <!-- User bio -->
                                 <div id="userBio"></div>
                             </div>
+
                             <!-- Other profile information -->
                             <div id="otherInfoDiv">
                                 <!-- Location -->
@@ -70,19 +78,18 @@
                                     <span
                                         class="material-symbols-rounded"
                                         id="locationIcon"
+                                        >location_on</span
                                     >
-                                        location_on
-                                    </span>
                                     <h5 id="location"></h5>
                                 </div>
+
                                 <!-- Followers and following count -->
                                 <div id="followDiv">
                                     <span
                                         class="material-symbols-rounded"
                                         id="followIcon"
+                                        >groups</span
                                     >
-                                        groups
-                                    </span>
                                     <h5 id="follow">
                                         <span id="followers"></span> Followers -
                                         <span id="following"></span> Following
@@ -90,28 +97,148 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- Repositories section -->
                         <div id="reposDiv">
-                            <!-- Repositories header -->
                             <div id="reposDivHeader">
                                 <h3 id="reposHeading">Repositories</h3>
                                 <span id="totalReposBadge"></span>
                             </div>
-                            <!-- Repositories container -->
                             <div id="reposContainer"></div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Repositories Full View Start: Displays all information about a repository along withcode -->
+                <div id="repoFullView">
+                    <!-- Repository Main Information Div Start -->
+                    <div id="repoInfoDiv">
+                        <!-- Repository Full Name with Badge Div Start -->
+                        <div id="repoFullNameWithBadge">
+                            <div id="repoFullName">
+                                <span id="repoUser"></span>/<span
+                                    id="repoName"
+                                ></span>
+                            </div>
+                            <span class="repoBadge">Public</span>
+                        </div>
+
+                        <!-- Repository Description -->
+                        <div id="repoDescription"></div>
+
+                        <!-- Repository Languages -->
+                        <div id="repoLanguagesDiv"></div>
+                    </div>
+
+                    <!-- Repository Main Information Div End -->
+
+                    <!-- Code Wrapper Div Start: Contains code, file name, branch, and file list icon -->
+                    <div id="codeWrapper">
+                        <!-- Code Viewer Header Start: Displays file name, branch, and file list icon -->
+                        <div id="codeViewHeader">
+                            <!-- File Name Wrapper Div Start -->
+                            <div id="fileNameWrapper">
+                                <div id="fileName">Select a File</div>
+
+                                <div id="loaderDivForFileName">
+                                    <div class="custom-loader"></div>
+                                </div>
+                            </div>
+
+                            <!-- Branch and Files List Icon Div Start -->
+                            <div id="codeBranchAndFilesDiv">
+                                <!-- Code Branch Div Start: Displays branch name and icon -->
+                                <div id="codeBranch">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="32"
+                                        height="32"
+                                        viewBox="0 0 32 32"
+                                        id="branchIcon"
+                                    >
+                                        <path
+                                            fill="#76848F"
+                                            d="M21.5 7.119a3.67 3.67 0 0 0-3.667 3.667c0 1.353.741 2.523 1.833 3.159v.508s0 3.667-3.667 3.667c-1.52 0-2.711.326-3.667.825v-8.666a3.65 3.65 0 0 0 1.833-3.159c0-2.024-1.643-3.667-3.667-3.667S6.831 5.096 6.831 7.12a3.65 3.65 0 0 0 1.833 3.159v12.016a3.65 3.65 0 0 0-1.833 3.158c0 2.023 1.643 3.667 3.667 3.667s3.667-1.644 3.667-3.667c0-.96-.378-1.826-.981-2.482.534-.655 1.401-1.185 2.815-1.185 7.276 0 7.333-7.333 7.333-7.333v-.508a3.653 3.653 0 0 0 1.833-3.159 3.67 3.67 0 0 0-3.667-3.667zm-11-1.833c1.014 0 1.833.819 1.833 1.833s-.819 1.833-1.833 1.833-1.833-.819-1.833-1.833.819-1.833 1.833-1.833zm0 22a1.832 1.832 0 1 1 1.833-1.833 1.832 1.832 0 0 1-1.833 1.833zm11-14.667c-1.013 0-1.833-.819-1.833-1.833s.82-1.833 1.833-1.833 1.833.819 1.833 1.833-.82 1.833-1.833 1.833z"
+                                        ></path>
+                                    </svg>
+                                    <div id="branchName"></div>
+                                </div>
+
+                                <!-- Files List Icon Start -->
+                                <span
+                                    class="material-symbols-rounded"
+                                    id="filesIcon"
+                                    >list</span
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Main Code Wrapper Start: Contains the code display area -->
+                        <div id="mainCodeWrapper">
+                            <div id="loaderDivForCode">
+                                <div class="custom-loader"></div>
+                            </div>
+                            <pre
+                                id="mainCodePre"
+                            ><code id="mainCode"></code></pre>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <!-- Information section -->
             <div id="infoDiv">
                 <h3 id="infoText" class="info">
                     Type a GitHub Username and Hit Enter
                 </h3>
             </div>
+
             <!-- Loader for profile information -->
             <div id="loaderDivForGeneral">
                 <div class="custom-loader"></div>
+            </div>
+        </div>
+
+        <!-- Wrapper for all pop-up elements including branch list and file explorer -->
+        <div id="popUpsWrapper">
+            <!-- Branch List Section Start -->
+            <div id="branchListWrapper">
+                <!-- Header for the Branch List Section -->
+                <div id="branchListHeaderDiv">
+                    <h4 id="branchListHeaderText">Branches</h4>
+                    <!-- Close button for the Branch List Section -->
+                    <span class="material-symbols-rounded" id="closeBtnBranch"
+                        >close</span
+                    >
+                </div>
+
+                <!-- Loader for Branch List Section -->
+                <div id="loaderDivForBranch">
+                    <div class="custom-loader"></div>
+                </div>
+
+                <!-- Container for displaying list of branches -->
+                <div id="branchLists"></div>
+            </div>
+
+            <!-- File Explorer Section Start -->
+            <div id="fileExplorerWrapper">
+                <!-- Header for the File Explorer Section -->
+                <div id="fileExplorerHeaderDiv">
+                    <h4 id="fileExplorerHeaderText">File Explorer</h4>
+                    <!-- Close button for the File Explorer Section -->
+                    <span class="material-symbols-rounded" id="closeBtnFiles"
+                        >close</span
+                    >
+                </div>
+
+                <!-- Loader for File Explorer Section -->
+                <div id="loaderDivForFileExplorer">
+                    <div class="custom-loader"></div>
+                </div>
+
+                <!-- Container for displaying files and folders -->
+                <div id="filesContainer"></div>
             </div>
         </div>
     </body>

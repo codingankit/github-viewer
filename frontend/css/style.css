@@ -1,11 +1,9 @@
 /* Importing HighlightJS CSS library for code highlighting with github dark dimmed theme */
-@import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark-dimmed.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css");
 
 /* Importing the main Dosis font for the page */
 @import url("https://fonts.googleapis.com/css2?family=Dosis&display=swap");
 
-/* Importing the Droid Sans Mono font for the code */
-@import url("https://fonts.googleapis.com/css?family=Droid Sans Mono");
 
 /* Style for all the elements in the page */
 * {
@@ -21,9 +19,14 @@ body {
     background-color: #2c333b;
 }
 
-/* Style for the main content where all information about the GitHub user and repo are shown like profile info,all repos,repo info and code in the repo */
-#mainContent {
+/* Style for the main content area in the profile view mode, where information about the GitHub user is displayed */
+#mainContent.profileView {
     margin-top: 100px;
+}
+
+/* Style for the main content area in the repository view mode, where information about a specific repository is displayed */
+#mainContent.repoView {
+    margin-top: 15px;
 }
 
 /* Style for the information Div where information Text is showed */
@@ -130,3 +133,9 @@ body {
 
 /* Importing Styles for Profile View  */
 @import url("./profile.css");
+
+/* Importing Styles for Repositories View  */
+@import url("./repo.css");
+
+/* Importing Styles for Popups to show File Explorer and Branch List */
+@import url("./popups.css");

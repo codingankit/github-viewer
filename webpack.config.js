@@ -59,7 +59,7 @@ if (NODE_ENV === "development") {
 export default {
     // Entry point of your JavaScript
     entry: {
-        app: "./frontend/js/main.js"
+        app: "./frontend/main.js"
     },
     // Output configuration
     output: {

@@ -10,6 +10,15 @@ import helmet from "helmet"; // For securing HTTP headers
 // Import Router for the "/api/fetchProfile" endpoint which is used for fetching profile data
 import fetchProfile from "./backend/fetchProfile.js";
 
+// Import Router for the "/api/fetchRepo" endpoint which is used for fetching repository data
+import fetchRepo from "./backend/fetchRepo.js";
+
+// Import Router for the "/api/fetchBranches" endpoint which is used for fetching all branches data
+import fetchBranches from "./backend/fetchBranches.js";
+
+// Import Router for the "/api/fetchFiles" endpoint which is used for fetching all files and folder in a certain branch of a repo
+import fetchFiles from "./backend/fetchFiles.js";
+
 // Set the global __dirname to the current directory
 global.__dirname = path.resolve();
 
@@ -42,6 +51,15 @@ app.use(express.json());
 
 // Set up Router for the "/api/fetchProfile" endpoint
 app.use("/api/fetchProfile", fetchProfile);
+
+// Set up Router for the "/api/fetchRepo" endpoint
+app.use("/api/fetchRepo", fetchRepo);
+
+// Set up Router for the "/api/fetchBranches" endpoint
+app.use("/api/fetchBranches", fetchBranches);
+
+// Set up Router for the "/api/fetchFiles" endpoint
+app.use("/api/fetchFiles", fetchFiles);
 
 // If the server is in production mode
 if (isProduction) {

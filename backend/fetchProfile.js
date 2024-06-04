@@ -7,25 +7,36 @@ import { Router } from "express"; // Use the Express Router to define routes
 const router = Router();
 
 const API_FOR_PROFILE = `https://api.github.com/users/username`; // API endpoint for fetching profile data
+
+// This line fetches the GitHub API token from the environment variables
+const GITHUB_API_TOKEN = process.env.GITHUB_API_TOKEN;
+
 const NO_PROFILE_PIC = `https://avatars.githubusercontent.com/u/68148771?s=400&v=4`; // Default profile picture URL
 
 // Define a route to fetch a user's profile data based on their GitHub username
 router.post("/", async (req, res) => {
     // Extract the username from the request body
-    const username = req.body.username;
+    const { username } = req.body;
+
     try {
         // Construct the API URL for fetching profile data using the username
         const apiKeyForFetchingProfileData = API_FOR_PROFILE.replace(
-            `username`,
+            "username",
             username
         );
-        // Fetch the profile data from the constructed API URL
-        const fetchProfileResponse = await fetch(apiKeyForFetchingProfileData);
+
+        // Fetch the profile data from the GitHub API
+        const fetchProfileResponse = await fetch(apiKeyForFetchingProfileData, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${GITHUB_API_TOKEN}`
+            }
+        });
+
         // Check if the fetch operation was successful
         if (fetchProfileResponse.ok) {
             // Parse the fetched profile data
             const fetchedProfileData = await fetchProfileResponse.json();
-            // Extract relevant data fields from the profile data
             const {
                 name,
                 avatar_url: profilePic,
@@ -35,31 +46,32 @@ router.post("/", async (req, res) => {
                 following,
                 repos_url: reposUrl
             } = fetchedProfileData;
-            // Initialize an empty array to store repository information
-            const repos = [];
+
             // Fetch the repositories associated with the user
-            const fetchReposResponse = await fetch(reposUrl);
-            // Check if fetching repositories was successful
-            if (!fetchReposResponse.ok) {
-                // If not, return an error response
-                res.json(
-                    JSON.stringify({
-                        statusCode: 0,
-                        status: `Something Went Wrong !`
-                    })
-                );
-            } else {
-                // Parse the fetched repository data
-                const allReposData = await fetchReposResponse.json();
-                // If there are repositories, extract relevant information
-                if (allReposData.length !== 0) {
-                    allReposData.forEach(repo => {
-                        const { name, language } = repo;
-                        repos.push({ name, language });
-                    });
+            const fetchReposResponse = await fetch(reposUrl, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${GITHUB_API_TOKEN}`
                 }
-                // Convert the fetched profile data to JSON format
-                const fetchedProfileDataJSON = JSON.stringify({
+            });
+
+            if (!fetchReposResponse.ok) {
+                // Handle failed repository fetch
+                res.json({ statusCode: 0, status: "Something Went Wrong!" });
+                return;
+            }
+
+            // Parse the fetched repository data
+            const allReposData = await fetchReposResponse.json();
+            const repos = allReposData.map(({ name, language }) => ({
+                name,
+                language
+            }));
+
+            // Return a success response with the fetched profile data
+            res.json({
+                statusCode: 1,
+                status: {
                     username,
                     name,
                     profilePic,
@@ -68,41 +80,20 @@ router.post("/", async (req, res) => {
                     followers,
                     following,
                     repos
-                });
-                // Return a success response with the fetched profile data
-                res.json(
-                    JSON.stringify({
-                        statusCode: 1,
-                        status: fetchedProfileDataJSON
-                    })
-                );
-            }
+                }
+            });
+        } else {
+            // Handle cases where the username is not found or the request fails
+            const errorMessage =
+                fetchProfileResponse.status === 404
+                    ? "Username Not Found!"
+                    : "Something Went Wrong!";
+            res.json({ statusCode: 0, status: errorMessage });
         }
-        // Handle cases where the username is not found or the request fails
-        if (fetchProfileResponse.status === 404)
-            res.json(
-                JSON.stringify({
-                    statusCode: 0,
-                    status: `Username Not Found !`
-                })
-            );
-
-        if (fetchProfileResponse.status !== 404 && !fetchProfileResponse.ok)
-            res.json(
-                JSON.stringify({
-                    statusCode: 0,
-                    status: `Something Went Wrong !`
-                })
-            );
     } catch (error) {
         // Handle any errors that occur during the fetch operation
+        res.json({ statusCode: 0, status: "Something Went Wrong!" });
         console.error(error);
-        res.json(
-            JSON.stringify({
-                statusCode: 0,
-                status: `Something Went Wrong !`
-            })
-        );
     }
 });
 

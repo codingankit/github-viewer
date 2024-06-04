@@ -1,0 +1,220 @@
+/* This the CSS for Repositories where all Repo Information is shown */
+
+/* Style for the Repositorie full view */
+#repoFullView {
+    display: none;
+}
+
+/* Style for Repositorie info div where information about repo like name,languages and description is shown */
+#repoInfoDiv {
+    background-color: #2c333b;
+    margin: 0px auto 15px auto;
+    width: 95%;
+    border-radius: 6px;
+    padding: 11px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* Style for repo full name with public badge */
+#repoFullNameWithBadge {
+    color: #ced9e4;
+    display: flex;
+    align-items: center;
+}
+
+/* Style for Repo full name without badge */
+#repoFullName {
+    width: 83%;
+    overflow: auto;
+}
+
+/* Style for repo name and it's user */
+#repoUser,
+#repoName {
+    font-size: 18px;
+    color: #5b9ae8;
+}
+
+/* Style for repo user */
+#repoUser {
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+/* Style for repo user on hover */
+#repoUser:hover {
+    text-decoration: underline;
+}
+
+/* Style for repo name */
+#repoName {
+    font-weight: 900;
+    margin-left: 5px;
+}
+
+/* Style for repo description */
+#repoDescription {
+    color: #ced9e4;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 17px 0px 17px 11px;
+}
+
+/* Style for repo languages div */
+#repoLanguagesDiv {
+    text-align: center;
+    margin: 0px 5px 0px 5px;
+}
+
+/* Style for repo language wrapper */
+.repoLangWrapper {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 8px;
+    margin-bottom: 3px;
+}
+
+/* Style for repo language */
+.repoMainLang {
+    color: #ced9e4;
+    margin-right: 3px;
+    display: inline;
+}
+
+/* Style for repo language percentage */
+.repoLangPercentage {
+    color: #76848f;
+    display: inline;
+}
+
+/* Style for code wrapper where filename,branch,and file list icon & code is shown */
+#codeWrapper {
+    background-color: #2c333b;
+    margin: 0px auto 15px auto;
+    width: 95%;
+    border-radius: 6px;
+    padding: 0px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* Style for code viewer header where filename,branch,and file list icon is shown */
+#codeViewHeader {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 7px;
+    height: 33px;
+}
+
+/* Style for fileName,codeBranchAndFilesDiv,codeBranch,branchIcon,branchName & filesIcon */
+#fileNameWrapper,
+#codeBranchAndFilesDiv,
+#codeBranch,
+#branchIcon,
+#branchName,
+#filesIcon {
+    display: flex;
+    align-items: center;
+}
+
+/* Style for div where file name is shown */
+#fileNameWrapper {
+    width: 140%;
+    overflow: auto;
+    color: #5b9ae8;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Style for codeBranchAndFilesDiv where branch and file list icon is shown */
+#codeBranchAndFilesDiv {
+    width: 100%;
+    justify-content: flex-end;
+}
+
+/* Style for codeBranch where branch name & icon is shown */
+#codeBranch {
+    overflow: auto;
+    margin-right: 13px;
+    max-width: 70%;
+    color: #ced9e4;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 3px;
+    justify-content: center;
+}
+
+/* Style for branch icon */
+#branchIcon {
+    height: 16px;
+    width: 16px;
+}
+
+/* Style for files icon */
+#filesIcon {
+    color: #76848f;
+    padding: 2px;
+}
+
+/* Style for codeBranch and filesIcon on hover */
+#codeBranch:hover,
+#filesIcon:hover {
+    background-color: #383e47;
+    border-radius: 3px;
+}
+
+/* Style for div where the code is wrapped with other things like Loader */
+#mainCodeWrapper {
+    background-color: #282c35;
+    max-height: 593px;
+    overflow: auto;
+}
+
+/* Style for div where the code is shown */
+#mainCode {
+    font-size: 11px;
+    letter-spacing: 0px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+/* Style for loader div for file */
+#loaderDivForFileName {
+    padding-left: 30px;
+    display: none;
+}
+
+/* Style for the loading animation in file loader div */
+#loaderDivForFileName div.custom-loader {
+    width: 4px;
+    height: 4px;
+    background: #ced9e4;
+    border-radius: 50%;
+    box-shadow:
+        20px 0 #ced9e422,
+        -20px 0 #ced9e4;
+    animation: d5 1s infinite linear alternate;
+}
+
+/* Style for loader div for code */
+#loaderDivForCode {
+    background-color: #282c35;
+    height: 250px;
+    margin-bottom: 15px;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+/* Style for the loading animation in code loader div */
+#loaderDivForCode div.custom-loader {
+    width: 6px;
+    height: 6px;
+    background: #ced9e4;
+    border-radius: 50%;
+    box-shadow:
+        20px 0 #ced9e422,
+        -20px 0 #ced9e4;
+    animation: d5 1s infinite linear alternate;
+}

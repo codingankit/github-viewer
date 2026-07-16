@@ -1,0 +1,276 @@
+/* CSS Style for all popups where branchs and files and folders are shown */
+
+/* Style for branch list wrapper where all branches are shown */
+#branchListWrapper {
+    position: absolute;
+    top: -200%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    z-index: 2;
+    opacity: 0;
+    transition:
+        opacity 300ms ease-in-out,
+        top 1000ms ease-in-out,
+        transform 1000ms ease-in-out;
+    background-color: #2c333b;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 15px;
+    border-radius: 6px;
+    width: 72%;
+    max-height: 400px;
+    overflow: auto;
+}
+
+/* Style for file explorer wrapper where files & folders are shown */
+#fileExplorerWrapper {
+    position: absolute;
+    top: -200%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    z-index: 2;
+    opacity: 0;
+    transition:
+        opacity 300ms ease-in-out,
+        top 1000ms ease-in-out,
+        transform 1000ms ease-in-out;
+    background-color: #2c333b;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 0px;
+    border-radius: 6px;
+    width: 88%;
+    max-height: 545px;
+    overflow: auto;
+    padding-bottom: 12px;
+}
+
+/* Style for branch list wrapper and file explorer wrapper when it's active or vissible */
+#branchListWrapper.active,
+#fileExplorerWrapper.active {
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition: transform 300ms cubic-bezier(0.18, 0.89, 0.43, 1.19);
+}
+
+/* Style for branch list header div */
+#branchListHeaderDiv {
+    display: flex;
+    margin-bottom: 13px;
+    justify-content: center;
+    color: #5b9ae8;
+}
+
+#branchLists {
+    overflow: auto;
+    max-height: 300px;
+}
+
+/* Style for file explorer header div */
+#fileExplorerHeaderDiv {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: center;
+    color: #5b9ae8;
+}
+
+/* Style for file explorer header text */
+#fileExplorerHeaderText {
+    font-size: 17px;
+    padding: 12px 0px 0px 0px;
+}
+
+/* Style for branch list close button */
+#closeBtnBranch {
+    position: absolute;
+    margin-left: 90%;
+    margin-top: -4%;
+    font-size: 18px;
+    color: red;
+}
+
+/* Style for file explorer close button */
+#closeBtnFiles {
+    position: absolute;
+    margin-left: 92%;
+    margin-top: 1%;
+    font-size: 18px;
+    color: red;
+}
+
+/* Style for the individual branch name */
+.branchName {
+    font-size: 11px;
+    font-weight: bold;
+    color: #ced9e4;
+    margin-bottom: 8px;
+    margin-left: 1px;
+    padding: 4px;
+    border-radius: 3px;
+    overflow: auto;
+}
+
+/* Style for the individual branch name on hover */
+.branchName:hover {
+    background-color: #343b43;
+}
+
+/* Style for the individual branch name which is currently selected */
+.branchName.active {
+    color: #5b9ae8;
+    background-color: #343b43;
+}
+
+/* Style for the container where all the files and folders are shown by JS */
+#filesContainer {
+    overflow: auto;
+    max-height: 490px;
+    margin: 0px 10px 0px 10px;
+}
+
+/* Style for files and folders container */
+.contentTypeDir,
+.contentTypeFile {
+    color: #ced9e4;
+    margin-bottom: 3px;
+}
+
+/* Style for the div where folder name,it's icons are shown */
+.nameIconDivDir {
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    padding-bottom: 1.4px;
+    border-radius: 3px;
+}
+
+/* Style for the nameIconDivDir on hover */
+.nameIconDivDir:hover {
+    background-color: #343b43;
+}
+
+/* Style for the nameIconDivDir which is currently selected */
+.nameIconDivDir.active {
+    background-color: #343b43;
+    color: #5b9ae8;
+}
+
+/* Style for the div where file name,it's icon are shown */
+.nameIconDivFile {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1.4px;
+    border-radius: 3px;
+    padding: 3px 3px 3px 20px;
+}
+
+/* Style for the nameIconDivFile on hover */
+.nameIconDivFile:hover {
+    background-color: #343b43;
+}
+
+/* Style for the nameIconDivFile which is currently selected */
+.nameIconDivFile.active {
+    background-color: #343b43;
+    color: #5b9ae8;
+}
+
+/* Style for the file and folder name text */
+.dirName,
+.fileName {
+    padding: 0px 0px 0px 3px;
+    margin-bottom: 1px;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+/* Style for only folder name */
+.dirName {
+    margin-bottom: 2px;
+}
+
+/* Style for all folder icons */
+.folderClosed,
+.folderExpanded {
+    font-size: 13px;
+    margin-left: 3px;
+}
+
+/* Style for the file icon */
+.fileIcon {
+    font-size: 14px;
+}
+
+/* Style for the all arrow icons */
+.arrowClosed,
+.arrowExpanded {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Style for the all sub files div */
+.subFilesDiv {
+    margin: 8px 0px 0px 10px;
+    display: none;
+}
+
+/* Style for loader div for branch */
+#loaderDivForBranch {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+
+/* Style for the loading animation in branch loader div */
+#loaderDivForBranch div.custom-loader {
+    width: 6px;
+    height: 6px;
+    background: #ced9e4;
+    border-radius: 50%;
+    box-shadow:
+        20px 0 #ced9e422,
+        -20px 0 #ced9e4;
+    animation: d5 1s infinite linear alternate;
+}
+
+/* Style for loader div for file explorer */
+#loaderDivForFileExplorer {
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+
+/* Style for the loading animation in file explorer loader div */
+#loaderDivForFileExplorer div.custom-loader {
+    width: 6px;
+    height: 6px;
+    background: #ced9e4;
+    border-radius: 50%;
+    box-shadow:
+        20px 0 #ced9e422,
+        -20px 0 #ced9e4;
+    animation: d5 1s infinite linear alternate;
+}
+
+/* Style for loader div on folder openings */
+.loaderDivForSubFiles {
+    margin-left: 25px;
+    display: none;
+}
+
+/* Style for loader animation on folder openings */
+.loaderDivForSubFiles div.custom-loader {
+    width: 5px;
+    height: 5px;
+    background: #ced9e4;
+    border-radius: 50%;
+    box-shadow:
+        20px 0 #ced9e422,
+        -20px 0 #ced9e4;
+    animation: d5 1s infinite linear alternate;
+}
